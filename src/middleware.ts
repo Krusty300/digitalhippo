@@ -14,5 +14,12 @@ export async function middleware(req: NextRequest) {
     )
   }
 
+  // Protect dashboard routes
+  if (!user && nextUrl.pathname.startsWith('/dashboard')) {
+    const redirectUrl = new URL(`${process.env.NEXT_PUBLIC_SERVER_URL}/sign-in`)
+    redirectUrl.searchParams.set('origin', 'dashboard')
+    return NextResponse.redirect(redirectUrl)
+  }
+
   return NextResponse.next()
 }
