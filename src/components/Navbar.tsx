@@ -51,7 +51,15 @@ const Navbar = async () => {
                   )}
 
                   {user ? (
-                    <UserAccountNav user={user} />
+                    <>
+                      <Link
+                        href="/dashboard"
+                        className={buttonVariants({ variant: 'ghost' })}
+                      >
+                        Dashboard
+                      </Link>
+                      <UserAccountNav user={user} />
+                    </>
                   ) : (
                     <Link
                       href='/sign-up'
